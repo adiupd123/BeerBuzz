@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.adiupd123.beerbuzz.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_beerItemFragment2"
+            app:destination="@id/beerItemFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_QRScannerFragment"
+            app:destination="@id/QRScannerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beerItemFragment"
+        android:name="com.adiupd123.beerbuzz.BeerItemFragment"
+        android:label="fragment_beer_item"
+        tools:layout="@layout/fragment_beer_item" />
+    <fragment
+        android:id="@+id/QRScannerFragment"
+        android:name="com.adiupd123.beerbuzz.QRScannerFragment"
+        android:label="fragment_q_r_scanner"
+        tools:layout="@layout/fragment_q_r_scanner" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.adiupd123.beerbuzz.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_beerItemFragment"
+            app:destination="@id/beerItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.adiupd123.beerbuzz.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
+</navigation>
