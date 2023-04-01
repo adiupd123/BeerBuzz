@@ -18,7 +18,12 @@ class BeerViewModel @Inject constructor(private val beerRemoteRepository: BeerRe
 
     fun getSearchedBeers(beerName: String, page: Int, per_page: Int){
         viewModelScope.launch {
-            beerRemoteRepository.getBeers(beerName, page, per_page)
+            beerRemoteRepository.getSearchedBeers(beerName, page, per_page)
+        }
+    }
+    fun getRandomBeer(){
+        viewModelScope.launch {
+            beerRemoteRepository.getRandomBeer()
         }
     }
 }

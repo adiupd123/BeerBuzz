@@ -12,15 +12,15 @@ interface BeerApi {
     // then add ?brewed_before=11-2012&abv_gt=6 - we'll implement additional params when basic features are implemented
     // OR ?page=2&per_page=80 for pagination
     //Get All beers paginated manner
-    @GET("/beers")
+    @GET("/v2/beers")
     suspend fun getAllBeers(@Query("page") page: Int, @Query("per_page") per_page: Int): Response<BeersResponse>
 
     // Get some beers using parameters in a paginated manner when searched
-    @GET("/beers")
-    suspend fun getBeers(@Query("beer_name") beer_name: String, @Query("page") page: Int, @Query("per_page") per_page: Int): Response<BeersResponse>
+    @GET("/v2/beers")
+    suspend fun getSearchedBeers(@Query("beer_name") beer_name: String, @Query("page") page: Int, @Query("per_page") per_page: Int): Response<BeersResponse>
 
     // Get Random Beer using Random beer button
-    @GET("/beers/random")
-    suspend fun getRandomBeer(): Response<BeersResponseItem>
+    @GET("/v2/beers/random")
+    suspend fun getRandomBeer(): Response<BeersResponse>
 
 }

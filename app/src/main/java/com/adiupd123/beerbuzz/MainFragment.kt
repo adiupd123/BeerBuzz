@@ -23,7 +23,13 @@ class MainFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
         binding.textMain.setOnClickListener {
-            beerViewModel.getAllBeers(1, 20)
+            beerViewModel.getAllBeers(1, 1)
+        }
+        binding.randomBtn.setOnClickListener {
+            beerViewModel.getRandomBeer()
+        }
+        binding.searchBtn.setOnClickListener {
+            beerViewModel.getSearchedBeers("punk", 1, 2)
         }
         return binding.root
     }
