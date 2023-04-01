@@ -13,4 +13,27 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance</item>
+    </style>
+    <style name="CustomTextAppearance" parent="android:style/TextAppearance">
+        <item name="android:fontFamily">@font/lilyscriptone_regular</item>
+    </style>
+    <style name="roundedCorners" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+    <style name="background_switcher">
+        <item name="android:background">@color/dark_green</item>
+    </style>
+    <style name="text_color_switcher">
+        <item name="android:textColor">@color/dark_green</item>
+    </style>
 </resources>

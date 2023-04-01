@@ -5,36 +5,134 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainFragment">
-
     <TextView
-        android:id="@+id/text_main"
+        android:id="@+id/welcomeTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MainFragment"
+        style="@style/text_color_switcher"
+        android:padding="16dp"
+        android:text="@string/welcome_to_beer_buzz"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/lilyscriptone_regular"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/randomBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="Get Random Beer"
+        android:orientation="horizontal"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_main" />
+        app:layout_constraintTop_toBottomOf="@id/welcomeTV">
 
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="Get Searched Beer"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/bOTD_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:src="@drawable/beer_bottle"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/roundedCorners"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BEER OF THE DAY"
+                style="@style/text_color_switcher"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="@font/lilyscriptone_regular"/>
+        </LinearLayout>
+        <View
+            android:layout_width="16dp"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/qr_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:contentPadding="32dp"
+                android:src="@drawable/qr_scan"
+                android:background="@color/yellow"
+                app:shapeAppearanceOverlay="@style/roundedCorners"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_qr_code"
+                style="@style/text_color_switcher"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="@font/lilyscriptone_regular"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/greenIV"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        style="@style/background_switcher"
+        app:shapeAppearanceOverlay="@style/roundedCorners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomBtn" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
+    <TextView
+        android:id="@+id/searchbeer_textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="25dp"
+        android:text="@string/search_your_favourite_beer"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/lilyscriptone_regular"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/greenIV"
+        app:layout_constraintEnd_toEndOf="@+id/greenIV"
+        app:layout_constraintStart_toStartOf="@+id/greenIV"
+        app:layout_constraintTop_toTopOf="@+id/greenIV" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/blueIV"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        android:background="@color/light_blue"
+        app:shapeAppearanceOverlay="@style/roundedCorners"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/greenIV" />
+
+    <TextView
+        android:id="@+id/favouritesIV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="25dp"
+        android:text="@string/your_favourite_beers"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/lilyscriptone_regular"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/blueIV"
+        app:layout_constraintEnd_toEndOf="@+id/blueIV"
+        app:layout_constraintStart_toStartOf="@+id/blueIV"
+        app:layout_constraintTop_toTopOf="@+id/blueIV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

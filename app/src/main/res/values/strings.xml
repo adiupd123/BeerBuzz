@@ -2,4 +2,8 @@
     <string name="app_name">BeerBuzz</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_your_favourite_beer">Search your favourite beer...🍻</string>
+    <string name="welcome_to_beer_buzz">Welcome to Beer Buzz</string>
+    <string name="your_favourite_beers">Your Favourite Beers❤️</string>
+    <string name="scan_qr_code">SCAN QR CODE</string>
 </resources>

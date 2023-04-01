@@ -22,13 +22,13 @@ class MainFragment : Fragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        binding.textMain.setOnClickListener {
+        binding.welcomeTV.setOnClickListener {
             beerViewModel.getAllBeers(1, 1)
         }
-        binding.randomBtn.setOnClickListener {
+        binding.bOTDImageView.setOnClickListener {
             beerViewModel.getRandomBeer()
         }
-        binding.searchBtn.setOnClickListener {
+        binding.qrImageView.setOnClickListener {
             beerViewModel.getSearchedBeers("punk", 1, 2)
         }
         return binding.root
