@@ -6,4 +6,18 @@
     <string name="welcome_to_beer_buzz">Welcome to Beer Buzz</string>
     <string name="your_favourite_beers">Your Favourite Beers❤️</string>
     <string name="scan_qr_code">SCAN QR CODE</string>
+    <string name="beer_of_the_day">BEER OF THE DAY</string>
+    <string name="_1">#1</string>
+    <string name="beer_name">Beer Name</string>
+    <string name="sample_desc">Lorem ipsum sample text Lorem ipsum sample text</string>
+    <string name="likebtn">LikeBtn</string>
+    <string name="first_brewed">First Brewed:</string>
+    <string name="datebrewed">dateBrewed</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="volume">Volume:</string>
+    <string name="volume_value">Volume Value</string>
+    <string name="description">Description:</string>
+    <string name="your_favourites">Your Favourites</string>
+    <string name="find_drinks_and_that">Find drinks and that...</string>
+    <string name="search_beer_name">Search Beer Name</string>
 </resources>

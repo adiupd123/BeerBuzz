@@ -36,4 +36,7 @@
     <style name="text_color_switcher">
         <item name="android:textColor">@color/light_green</item>
     </style>
+    <style name="main_background_switcher">
+        <item name="android:background">@color/black</item>
+    </style>
 </resources>

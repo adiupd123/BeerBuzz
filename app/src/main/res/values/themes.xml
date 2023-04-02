@@ -18,10 +18,6 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:textAppearance">@style/CustomTextAppearance</item>
-    </style>
-    <style name="CustomTextAppearance" parent="android:style/TextAppearance">
-        <item name="android:fontFamily">@font/lilyscriptone_regular</item>
     </style>
     <style name="roundedCorners" >
         <item name="cornerFamily">rounded</item>
@@ -35,5 +31,8 @@
     </style>
     <style name="text_color_switcher">
         <item name="android:textColor">@color/dark_green</item>
+    </style>
+    <style name="main_background_switcher">
+        <item name="android:background">@color/ultralight_green</item>
     </style>
 </resources>

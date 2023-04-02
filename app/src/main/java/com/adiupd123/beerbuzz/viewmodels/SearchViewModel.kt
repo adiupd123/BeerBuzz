@@ -1,4 +1,4 @@
-package com.adiupd123.beerbuzz
+package com.adiupd123.beerbuzz.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BeerViewModel @Inject constructor(private val beerRemoteRepository: BeerRemoteRepository): ViewModel() {
+class SearchViewModel @Inject constructor(private val beerRemoteRepository: BeerRemoteRepository): ViewModel() {
+
+    val allbeersLiveData
+    get() = beerRemoteRepository.allBeersLiveData
 
     fun getAllBeers(page: Int, per_page: Int){
         viewModelScope.launch {
@@ -19,11 +22,6 @@ class BeerViewModel @Inject constructor(private val beerRemoteRepository: BeerRe
     fun getSearchedBeers(beerName: String, page: Int, per_page: Int){
         viewModelScope.launch {
             beerRemoteRepository.getSearchedBeers(beerName, page, per_page)
-        }
-    }
-    fun getRandomBeer(){
-        viewModelScope.launch {
-            beerRemoteRepository.getRandomBeer()
         }
     }
 }

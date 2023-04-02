@@ -2,20 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/main_background_switcher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainFragment">
     <TextView
         android:id="@+id/welcomeTV"
+        style="@style/text_color_switcher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/text_color_switcher"
+        android:fontFamily="@font/lilyscriptone_regular"
         android:padding="16dp"
         android:text="@string/welcome_to_beer_buzz"
+        android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:fontFamily="@font/lilyscriptone_regular"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,78 +32,83 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/bOTD_imageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                app:layout_constraintDimensionRatio="1:1"
-                android:src="@drawable/beer_bottle"
+                android:clickable="true"
                 android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/roundedCorners"/>
+                android:src="@drawable/beer_bottle"
+                app:layout_constraintDimensionRatio="1:1"
+                app:shapeAppearanceOverlay="@style/roundedCorners" />
+
             <TextView
+                style="@style/text_color_switcher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BEER OF THE DAY"
-                style="@style/text_color_switcher"
-                android:textStyle="bold"
+                android:fontFamily="@font/lilyscriptone_regular"
+                android:text="@string/beer_of_the_day"
                 android:textAlignment="center"
-                android:fontFamily="@font/lilyscriptone_regular"/>
+                android:textStyle="bold"/>
         </LinearLayout>
         <View
             android:layout_width="16dp"
             android:layout_height="match_parent"/>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/qr_imageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                app:contentPadding="32dp"
-                android:src="@drawable/qr_scan"
                 android:background="@color/yellow"
+                android:clickable="true"
+                android:src="@drawable/qr_scan"
+                app:contentPadding="32dp"
                 app:shapeAppearanceOverlay="@style/roundedCorners"/>
 
             <TextView
+                style="@style/text_color_switcher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/lilyscriptone_regular"
                 android:text="@string/scan_qr_code"
-                style="@style/text_color_switcher"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:fontFamily="@font/lilyscriptone_regular"/>
+                android:textStyle="bold"/>
         </LinearLayout>
 
     </LinearLayout>
     
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/greenIV"
+        style="@style/background_switcher"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_margin="16dp"
-        style="@style/background_switcher"
-        app:shapeAppearanceOverlay="@style/roundedCorners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:shapeAppearanceOverlay="@style/roundedCorners" />
 
     <TextView
         android:id="@+id/searchbeer_textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
+        android:fontFamily="@font/lilyscriptone_regular"
         android:paddingTop="25dp"
         android:text="@string/search_your_favourite_beer"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/lilyscriptone_regular"
-        android:textColor="@color/design_default_color_on_primary"
         android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/greenIV"
         app:layout_constraintEnd_toEndOf="@+id/greenIV"
         app:layout_constraintStart_toStartOf="@+id/greenIV"
@@ -114,22 +120,23 @@
         android:layout_height="80dp"
         android:layout_margin="16dp"
         android:background="@color/light_blue"
-        app:shapeAppearanceOverlay="@style/roundedCorners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greenIV" />
+        app:layout_constraintTop_toBottomOf="@id/greenIV"
+        app:shapeAppearanceOverlay="@style/roundedCorners" />
 
     <TextView
         android:id="@+id/favouritesIV"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
+        android:fontFamily="@font/lilyscriptone_regular"
         android:paddingTop="25dp"
         android:text="@string/your_favourite_beers"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/lilyscriptone_regular"
-        android:textColor="@color/design_default_color_on_primary"
         android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/blueIV"
         app:layout_constraintEnd_toEndOf="@+id/blueIV"
         app:layout_constraintStart_toStartOf="@+id/blueIV"
