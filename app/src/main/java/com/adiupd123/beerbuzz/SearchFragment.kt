@@ -10,14 +10,17 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.adiupd123.beerbuzz.adapters.BeerAdapter
 import com.adiupd123.beerbuzz.databinding.FragmentSearchBinding
+import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.adiupd123.beerbuzz.utils.NetworkResult
 import com.adiupd123.beerbuzz.viewmodels.SearchViewModel
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +36,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        beerAdapter = BeerAdapter()
+        beerAdapter = BeerAdapter(::onBeerItemClicked)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,7 +69,7 @@ class SearchFragment : Fragment() {
             binding.progressBar.isVisible = false
             when(it){
                 is NetworkResult.Success -> {
-                    val currentList = beerAdapter.currentList.toMutableList()
+                    var currentList = beerAdapter.currentList.toMutableList()
                     it.data?.let { it1 -> currentList.addAll(it1) }
                     beerAdapter.submitList(currentList)
                     isLoading = false
@@ -82,7 +85,16 @@ class SearchFragment : Fragment() {
             }
         })
     }
-
+    private fun onBeerItemClicked(beerItem: BeersResponseItem){
+        val bundle = Bundle()
+        bundle.putString("beerItem", Gson().toJson(beerItem))
+        findNavController().navigate(R.id.action_searchFragment_to_beerItemFragment, bundle)
+    }
+    override fun onResume() {
+        super.onResume()
+        searchViewModel.currentPage = 1
+        beerAdapter.submitList(null)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -12,16 +12,20 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/mainFragment" />
         <action
             android:id="@+id/action_mainFragment_to_favouritesFragment"
-            app:destination="@id/favouritesFragment" />
+            app:destination="@id/favouritesFragment"
+            app:popUpTo="@id/mainFragment" />
         <action
             android:id="@+id/action_mainFragment_to_beerItemFragment2"
-            app:destination="@id/beerItemFragment" />
+            app:destination="@id/beerItemFragment"
+            app:popUpTo="@id/mainFragment" />
         <action
             android:id="@+id/action_mainFragment_to_QRScannerFragment"
-            app:destination="@id/QRScannerFragment" />
+            app:destination="@id/QRScannerFragment"
+            app:popUpTo="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/beerItemFragment"
@@ -40,7 +44,8 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_beerItemFragment"
-            app:destination="@id/beerItemFragment" />
+            app:destination="@id/beerItemFragment"
+            app:popUpTo="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
