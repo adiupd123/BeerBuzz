@@ -10,10 +10,10 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/beer_imageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:src="@drawable/beer_bottle"
+        android:src="@drawable/beer_item_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,17 +31,16 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/beer_imageView" />
+
     <ImageView
         android:id="@+id/like_imageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="@string/likebtn"
         android:src="@drawable/ic_like"
         app:layout_constraintBottom_toBottomOf="@+id/beer_imageView"
-        app:layout_constraintEnd_toEndOf="@+id/beer_imageView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,21 +1,35 @@
 package com.adiupd123.beerbuzz.adapters
 
-import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.adiupd123.beerbuzz.databinding.BeerItemBinding
+import com.adiupd123.beerbuzz.databinding.FragmentBeerItemBinding
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.bumptech.glide.Glide
 
-class BeerAdapter(context: Context): ListAdapter<BeersResponseItem, BeerAdapter.BeerViewHolder>(ComparatorDiffUtil()) {
+class BeerAdapter: androidx.recyclerview.widget.ListAdapter<BeersResponseItem, BeerAdapter.BeerViewHolder>(ComparatorDiffUtil()) {
 
-
-    inner class BeerViewHolder(private val binding: BeerItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(beer: BeersResponseItem){
-            binding.beerIdTextView.text = beer.id.toString()
-            Glide.with()
+    class BeerViewHolder(private val binding: BeerItemBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(beerItem: BeersResponseItem){
+            binding.beerIdTextView.text = "#" + beerItem.id.toString()
+            Glide.with(binding.beerItemImageView)
+                .load(beerItem.image_url)
+                .into(binding.beerItemImageView)
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeerViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = BeerItemBinding.inflate(inflater, parent, false);
+        return BeerViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: BeerViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
     }
     class ComparatorDiffUtil: DiffUtil.ItemCallback<BeersResponseItem>() {
         override fun areItemsTheSame(oldItem: BeersResponseItem, newItem: BeersResponseItem): Boolean {
@@ -28,3 +42,4 @@ class BeerAdapter(context: Context): ListAdapter<BeersResponseItem, BeerAdapter.
 
     }
 }
+
