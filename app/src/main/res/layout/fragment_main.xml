@@ -41,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:clickable="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/beer_bottle"
+                android:scaleType="centerInside"
+                android:src="@drawable/what_beer_image"
                 app:layout_constraintDimensionRatio="1:1"
                 app:shapeAppearanceOverlay="@style/roundedCorners" />
 
