@@ -56,12 +56,12 @@ class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi, pri
     suspend fun isBeerFavourite(id: Int): Boolean {
         return favouriteDao.getSelectedFavBeer(id) != null
     }
-    suspend fun addFavouriteBeer(id: Int){
-        favouriteDao.addFavouriteBeer(FavouriteBeer(id))
+    suspend fun addFavouriteBeer(id: Int, name: String){
+        favouriteDao.addFavouriteBeer(FavouriteBeer(id, name))
     }
 
-    suspend fun removeFavouriteBeer(id: Int){
-        favouriteDao.removeFavouriteBeer(FavouriteBeer(id))
+    suspend fun removeFavouriteBeer(id: Int, name: String){
+        favouriteDao.removeFavouriteBeer(FavouriteBeer(id, name))
     }
 
 

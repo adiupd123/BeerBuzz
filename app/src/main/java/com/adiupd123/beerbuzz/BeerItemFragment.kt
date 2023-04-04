@@ -32,7 +32,7 @@ class BeerItemFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBeerItemBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
@@ -49,8 +49,8 @@ class BeerItemFragment : Fragment() {
 
     private fun bindObservers() {
         beerItemViewModel.isBeerLiked.observe(viewLifecycleOwner, Observer {
-            isBeerLiked = it
-            Log.d(TAG, "isBeerLiked: " + isBeerLiked)
+            isBeerLiked = it ?: false
+            Log.d(TAG, "isBeerLiked: $isBeerLiked isBeerLikedViewModel: ${beerItemViewModel.isBeerLiked.value}" )
             setUpLikeBtn(isBeerLiked)
         })
     }
@@ -62,13 +62,23 @@ class BeerItemFragment : Fragment() {
             binding.likeImageView.setImageResource(R.drawable.ic_like)
     }
 
-    fun onLikeButtonClicked() {
+    private fun onLikeButtonClicked() {
         if (isBeerLiked) {
             // Remove the beer from favourites
-            beerItemViewModel.removeFavouriteBeer(id)
+            beerItem?.let {
+                beerItemViewModel.removeFavouriteBeer(
+                    it.id,
+                    it.name
+                )
+            }
         } else {
             // Add the beer to favourites
-            beerItemViewModel.addFavouriteBeer(id)
+            beerItem?.let {
+                beerItemViewModel.addFavouriteBeer(
+                    it.id,
+                    it.name
+                )
+            }
         }
     }
 
@@ -77,7 +87,7 @@ class BeerItemFragment : Fragment() {
         if(jsonBeerItem != null){
             beerItem = Gson().fromJson(jsonBeerItem, BeersResponseItem::class.java)
             beerItem?.let {
-                binding.beerIdTextView.text = "#" + it.id
+                binding.beerIdTextView.text = "# ${it.id}"
                 binding.beerNameTextView.text = it.name
                 Glide.with(binding.beerImageView)
                     .load(it.image_url)

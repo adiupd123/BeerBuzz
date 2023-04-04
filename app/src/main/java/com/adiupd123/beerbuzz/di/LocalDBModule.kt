@@ -22,7 +22,9 @@ class LocalDBModule {
             context,
             BeersDatabase::class.java,
             "beers_database"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
