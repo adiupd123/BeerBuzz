@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.adiupd123.beerbuzz.api.BeerApi
 import com.adiupd123.beerbuzz.db.FavouriteDao
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
+import com.adiupd123.beerbuzz.models.local.FavouriteBeersList
 import com.adiupd123.beerbuzz.models.remote.BeersResponse
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.adiupd123.beerbuzz.utils.Constants.TAG
@@ -28,7 +29,7 @@ class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi,
     get() = _allBeersLiveData
 
     private val _allFavouriteBeersLiveData = MutableLiveData<List<FavouriteBeer>>()
-    val allFavouriteBeerLiveData: LiveData<List<FavouriteBeer>>
+    val allFavouriteBeersLiveData: LiveData<List<FavouriteBeer>>
     get() = _allFavouriteBeersLiveData
 
     private val _botdLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
@@ -55,7 +56,7 @@ class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi,
         Log.d(TAG, response.body().toString())
     }
     
-    suspend fun getRandomBeer(){
+    suspend fun getBeerOfTheDay(){
         val lastExecutionTime = sharedPref.getLong("lastExecutionTime", 0)
         val currentTime = System.currentTimeMillis()
 
@@ -88,6 +89,10 @@ class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi,
         }
     }
 
+    suspend fun showAllFavouriteBeers(){
+        _allFavouriteBeersLiveData.postValue(favouriteDao.getAllFavouriteBeers())
+    }
+
 
     // Manage Error Handling here
     suspend fun isBeerFavourite(id: Int): Boolean {
@@ -99,9 +104,5 @@ class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi,
 
     suspend fun removeFavouriteBeer(id: Int, name: String){
         favouriteDao.removeFavouriteBeer(FavouriteBeer(id, name))
-    }
-
-    suspend fun showAllFavouriteBeers(){
-        _allFavouriteBeersLiveData.postValue(favouriteDao.getAllFavouriteBeers())
     }
 }

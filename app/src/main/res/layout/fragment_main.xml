@@ -126,7 +126,7 @@
         app:shapeAppearanceOverlay="@style/roundedCorners" />
 
     <TextView
-        android:id="@+id/favouritesIV"
+        android:id="@+id/favourites_textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clickable="true"

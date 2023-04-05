@@ -17,9 +17,6 @@ class SearchViewModel @Inject constructor(private val beerRemoteRepository: Beer
     get() = beerRemoteRepository.allBeersLiveData
     var currentPage = 1
 
-    val allFavouriteBeersLiveData
-    get() = beerRemoteRepository.allFavouriteBeerLiveData
-
     fun loadMoreData() {
         getAllBeers(++currentPage)
     }
@@ -34,12 +31,4 @@ class SearchViewModel @Inject constructor(private val beerRemoteRepository: Beer
             beerRemoteRepository.getSearchedBeers(beerName, page, per_page)
         }
     }
-
-    fun getAllFavouriteBeers(){
-        viewModelScope.launch(Dispatchers.IO) {
-            beerRemoteRepository.showAllFavouriteBeers()
-        }
-    }
-
-
 }

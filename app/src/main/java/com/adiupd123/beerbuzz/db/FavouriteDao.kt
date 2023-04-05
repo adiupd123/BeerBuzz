@@ -2,6 +2,7 @@ package com.adiupd123.beerbuzz.db
 
 import androidx.room.*
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
+import com.adiupd123.beerbuzz.models.local.FavouriteBeersList
 
 @Dao
 interface FavouriteDao {
@@ -12,7 +13,7 @@ interface FavouriteDao {
     @Delete
     suspend fun removeFavouriteBeer(favouriteBeer: FavouriteBeer)
 
-    @Query("SELECT * FROM favourite_beers;")
+    @Query("SELECT * FROM favourite_beers")
     suspend fun getAllFavouriteBeers(): List<FavouriteBeer>
 
     @Query("SELECT * FROM favourite_beers WHERE beerId = :bId")

@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.adiupd123.beerbuzz.databinding.FragmentMainBinding
+import com.adiupd123.beerbuzz.models.local.FavouriteBeer
+import com.adiupd123.beerbuzz.models.local.FavouriteBeersList
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.adiupd123.beerbuzz.utils.NetworkResult
 import com.adiupd123.beerbuzz.viewmodels.MainViewModel
@@ -45,6 +47,9 @@ class MainFragment : Fragment() {
 
         binding.searchbeerTextView.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
+        }
+        binding.favouritesTextView.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_favouritesFragment)
         }
     }
     fun bindObservers() {
