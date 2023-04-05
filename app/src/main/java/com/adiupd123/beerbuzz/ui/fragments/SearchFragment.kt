@@ -145,7 +145,7 @@ class SearchFragment : Fragment() {
     }
     override fun onResume() {
         super.onResume()
-        searchViewModel.allCurrentPage = 1
+        searchViewModel.allCurrentPage = 0
         searchViewModel.searchedCurrentPage = 1
         beerAdapter.submitList(null)
     }
