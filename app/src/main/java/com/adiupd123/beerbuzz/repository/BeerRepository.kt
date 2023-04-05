@@ -2,31 +2,30 @@ package com.adiupd123.beerbuzz.repository
 
 import android.content.SharedPreferences
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.adiupd123.beerbuzz.api.BeerApi
 import com.adiupd123.beerbuzz.db.FavouriteDao
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
-import com.adiupd123.beerbuzz.models.local.FavouriteBeersList
 import com.adiupd123.beerbuzz.models.remote.BeersResponse
-import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.adiupd123.beerbuzz.utils.Constants.TAG
 import com.adiupd123.beerbuzz.utils.NetworkResult
 import com.google.gson.Gson
 import org.json.JSONObject
-import retrofit2.Response
-import java.util.Objects
 import javax.inject.Inject
 
-class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi,
-                                               private val favouriteDao: FavouriteDao,
-                                               private val sharedPref: SharedPreferences
+class BeerRepository @Inject constructor(private val beerApi: BeerApi,
+                                         private val favouriteDao: FavouriteDao,
+                                         private val sharedPref: SharedPreferences
                                                ) {
 
     private val _allBeersLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
     val allBeersLiveData: LiveData<NetworkResult<BeersResponse>>
     get() = _allBeersLiveData
+
+    private val _searchedBeersLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
+    val searchedBeersLiveData: LiveData<NetworkResult<BeersResponse>>
+    get() = _searchedBeersLiveData
 
     private val _allFavouriteBeersLiveData = MutableLiveData<List<FavouriteBeer>>()
     val allFavouriteBeersLiveData: LiveData<List<FavouriteBeer>>
@@ -53,7 +52,16 @@ class BeerRemoteRepository @Inject constructor(private val beerApi: BeerApi,
 
     suspend fun getSearchedBeers(beerName: String, page: Int, per_page: Int){
         val response = beerApi.getSearchedBeers(beerName, page, per_page)
-        Log.d(TAG, response.body().toString())
+        if(response.isSuccessful && response.body() != null){
+            Log.d(TAG, response.body().toString())
+            _searchedBeersLiveData.postValue(NetworkResult.Success(response.body()!!))
+        } else if(response.errorBody() != null){
+            Log.d(TAG, response.errorBody().toString())
+            val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
+            _searchedBeersLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
+        } else {
+            _searchedBeersLiveData.postValue(NetworkResult.Error("Something went wrong!"))
+        }
     }
     
     suspend fun getBeerOfTheDay(){
