@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.adiupd123.beerbuzz.MainFragment"
+        android:name="com.adiupd123.beerbuzz.ui.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -29,17 +29,17 @@
     </fragment>
     <fragment
         android:id="@+id/beerItemFragment"
-        android:name="com.adiupd123.beerbuzz.BeerItemFragment"
+        android:name="com.adiupd123.beerbuzz.ui.fragments.BeerItemFragment"
         android:label="fragment_beer_item"
         tools:layout="@layout/fragment_beer_item" />
     <fragment
         android:id="@+id/QRScannerFragment"
-        android:name="com.adiupd123.beerbuzz.QRScannerFragment"
+        android:name="com.adiupd123.beerbuzz.ui.fragments.QRScannerFragment"
         android:label="fragment_q_r_scanner"
         tools:layout="@layout/fragment_q_r_scanner" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.adiupd123.beerbuzz.SearchFragment"
+        android:name="com.adiupd123.beerbuzz.ui.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
-        android:name="com.adiupd123.beerbuzz.FavouritesFragment"
+        android:name="com.adiupd123.beerbuzz.ui.fragments.FavouritesFragment"
         android:label="fragment_favourites"
         tools:layout="@layout/fragment_favourites" />
 </navigation>

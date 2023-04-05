@@ -1,6 +1,5 @@
-package com.adiupd123.beerbuzz
+package com.adiupd123.beerbuzz.ui.fragments
 
-import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.adiupd123.beerbuzz.R
 import com.adiupd123.beerbuzz.adapters.BeerAdapter
 import com.adiupd123.beerbuzz.databinding.FragmentSearchBinding
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem

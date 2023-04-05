@@ -1,4 +1,4 @@
-package com.adiupd123.beerbuzz
+package com.adiupd123.beerbuzz.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
+import com.adiupd123.beerbuzz.R
 import com.adiupd123.beerbuzz.databinding.FragmentBeerItemBinding
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.adiupd123.beerbuzz.utils.Constants.TAG
@@ -18,8 +17,6 @@ import com.adiupd123.beerbuzz.viewmodels.BeerItemViewModel
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BeerItemFragment : Fragment() {

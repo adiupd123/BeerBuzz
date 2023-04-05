@@ -1,10 +1,11 @@
-package com.adiupd123.beerbuzz
+package com.adiupd123.beerbuzz.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.adiupd123.beerbuzz.R
 
 class QRScannerFragment : Fragment() {
 

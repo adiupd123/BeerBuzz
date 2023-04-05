@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/main_background_switcher"
-        tools:context=".BeerItemFragment">
+        tools:context=".ui.fragments.BeerItemFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
