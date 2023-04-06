@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
     <uses-permission android:name="android.permission.INTERNET" />
 
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false"/>
     <application
         android:name=".BeerBuzzApplication"
         android:allowBackup="true"
