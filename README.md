@@ -60,4 +60,4 @@ This app uses [***MVVM (Model View View-Model)***](https://developer.android.com
 
 ## App Video
 
-[]()
+[App Working Video Link](https://drive.google.com/file/d/1rUNZLclxXNzK3AEZ3Vz-NmSBCBucFkxr/view?usp=sharing)
