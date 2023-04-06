@@ -14,6 +14,17 @@ BeerBuzz is an Android App for beverage enthusiasts that allows them to explore 
 - QR Scanning functionality that allows users to share each others' favourites
 - List of Favourite Beers: To view your personal list of favourited beers
 
+## 📸 Screenshots
+
+![splash_screen](https://user-images.githubusercontent.com/78906777/230481117-e01681a0-67f4-4d66-a14d-9b10598181ca.png)
+![main_fragment](https://user-images.githubusercontent.com/78906777/230481105-18edaf2b-7411-44e6-9c2c-2c3b051f3d34.png)
+![BeerItemFragment](https://user-images.githubusercontent.com/78906777/230481120-2e208c27-0c7b-4d98-b7cb-40c4068f10a4.png)
+![BeerItemQRCode](https://user-images.githubusercontent.com/78906777/230481093-cfb33f97-6ee7-4b84-99d9-d84f7756aede.png)
+![BeerItemLiked](https://user-images.githubusercontent.com/78906777/230481122-9a3ceb53-b664-48e6-bd6e-e57130c692a8.png)
+![SearchFragment1](https://user-images.githubusercontent.com/78906777/230481110-67ad8e37-d1c7-4580-8373-5fc411d0df63.png)
+![SearchFragment2](https://user-images.githubusercontent.com/78906777/230481112-ae915171-fce5-436d-aeac-abbbb6c6bea0.png)
+![FavouriteFragment](https://user-images.githubusercontent.com/78906777/230481104-dfe0c4fe-43e5-43f0-976e-590b48d7c9df.png)
+
 ## Built With
   
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
@@ -41,4 +52,9 @@ This app uses [***MVVM (Model View View-Model)***](https://developer.android.com
 
 ---
 ## APK
-APK Link: https://drive.google.com/file/d/1AncwgzAL0E3V7aFAMGvgJURMx1CqCDP0/view?usp=sharing
+
+[APK Link](https://drive.google.com/file/d/1IYO7eP3XnV0Guf7KteA_lDRzycLljmrv/view?usp=sharing)
+
+## App Video
+
+[]()
