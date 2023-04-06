@@ -3,12 +3,12 @@ package com.adiupd123.beerbuzz.ui.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -41,6 +41,7 @@ class SearchFragment : Fragment() {
         beerAdapter = BeerAdapter(::onBeerItemClicked)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.beerSearchRecyclerView.apply {
@@ -49,8 +50,10 @@ class SearchFragment : Fragment() {
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    val lastVisibleItemPosition = (binding.beerSearchRecyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                    val firstVisibleItemPosition = (binding.beerSearchRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    val lastVisibleItemPosition =
+                        (binding.beerSearchRecyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                    val firstVisibleItemPosition =
+                        (binding.beerSearchRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
                     val totalItemCount = adapter?.itemCount ?: 0
                     if (!isLoading && lastVisibleItemPosition >= totalItemCount - 1 && firstVisibleItemPosition >= 0) {
                         // If the current loading process is not running and the user has scrolled to the end of the list
@@ -69,15 +72,18 @@ class SearchFragment : Fragment() {
         }
         bindObservers()
         searchViewModel.getAllBeers(1)
-        binding.searchEditText.addTextChangedListener(object: TextWatcher {
+        binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
                 searchViewModel.searchQuery = s.toString().trim()
-                if(searchViewModel.searchQuery.isNotEmpty()){
-                    searchViewModel.getSearchedBeers(searchViewModel.searchQuery, searchViewModel.searchedCurrentPage)
+                if (searchViewModel.searchQuery.isNotEmpty()) {
+                    searchViewModel.getSearchedBeers(
+                        searchViewModel.searchQuery,
+                        searchViewModel.searchedCurrentPage
+                    )
                 } else {
                     searchViewModel.getAllBeers(searchViewModel.allCurrentPage)
                 }
@@ -90,9 +96,9 @@ class SearchFragment : Fragment() {
         // We bind observer to the livedata and call the observer when any change to livedata happens
         searchViewModel.allbeersLiveData.observe(viewLifecycleOwner, Observer {
             binding.progressBar.isVisible = false
-            when(it){
+            when (it) {
                 is NetworkResult.Success -> {
-                    if(searchViewModel.allCurrentPage > 1) {
+                    if (searchViewModel.allCurrentPage > 1) {
                         val currentList = beerAdapter.currentList.toMutableList()
                         it.data?.let { it1 -> currentList.addAll(it1) }
                         beerAdapter.submitList(currentList)
@@ -102,7 +108,8 @@ class SearchFragment : Fragment() {
                     isLoading = false
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
                     isLoading = false
                 }
                 is NetworkResult.Loading -> {
@@ -114,9 +121,9 @@ class SearchFragment : Fragment() {
 
         searchViewModel.searchedBeersLiveData.observe(viewLifecycleOwner, Observer {
             binding.progressBar.isVisible = false
-            when(it){
+            when (it) {
                 is NetworkResult.Success -> {
-                    if(searchViewModel.searchedCurrentPage > 1) {
+                    if (searchViewModel.searchedCurrentPage > 1) {
                         val currentSearchedList = beerAdapter.currentList.toMutableList()
                         it.data?.let { it1 -> currentSearchedList.addAll(it1) }
                         beerAdapter.submitList(currentSearchedList)
@@ -126,7 +133,8 @@ class SearchFragment : Fragment() {
                     isLoading = false
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
                     isLoading = false
                 }
                 is NetworkResult.Loading -> {
@@ -136,17 +144,20 @@ class SearchFragment : Fragment() {
             }
         })
     }
-    private fun onBeerItemClicked(beerItem: BeersResponseItem){
+
+    private fun onBeerItemClicked(beerItem: BeersResponseItem) {
         val bundle = Bundle()
         bundle.putString("beerItem", Gson().toJson(beerItem))
         findNavController().navigate(R.id.action_searchFragment_to_beerItemFragment, bundle)
     }
+
     override fun onResume() {
         super.onResume()
         searchViewModel.allCurrentPage = 0
         searchViewModel.searchedCurrentPage = 1
         beerAdapter.submitList(null)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

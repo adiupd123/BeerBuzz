@@ -9,11 +9,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavouriteViewModel @Inject constructor(private val beerRepository: BeerRepository): ViewModel() {
+class FavouriteViewModel @Inject constructor(private val beerRepository: BeerRepository) :
+    ViewModel() {
     val allFavouriteBeersLiveData
-        get()= beerRepository.allFavouriteBeersLiveData
+        get() = beerRepository.allFavouriteBeersLiveData
 
-    fun getAllFavouriteBeers(){
+    fun getAllFavouriteBeers() {
         viewModelScope.launch(Dispatchers.IO) {
             beerRepository.showAllFavouriteBeers()
         }

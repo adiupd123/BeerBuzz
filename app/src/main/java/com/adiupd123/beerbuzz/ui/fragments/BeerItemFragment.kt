@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.adiupd123.beerbuzz.R
@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BeerItemFragment : Fragment() {
-    private var _binding: FragmentBeerItemBinding ?= null
+    private var _binding: FragmentBeerItemBinding? = null
     private val binding get() = _binding!!
     private var beerItem: BeersResponseItem? = null
     private val beerItemViewModel by viewModels<BeerItemViewModel>()
@@ -36,14 +36,15 @@ class BeerItemFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindObservers()
         setInitialData()
-        binding.likeImageView.setOnClickListener{
+        binding.likeImageView.setOnClickListener {
             onLikeButtonClicked()
         }
-        binding.qrGenImageView.setOnClickListener{
+        binding.qrGenImageView.setOnClickListener {
             val qrCode = beerItemViewModel.generateQRCode(beerItem?.id.toString(), 1024)
             val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -51,7 +52,10 @@ class BeerItemFragment : Fragment() {
             dialog.window?.apply {
                 setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                setFlags(
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND,
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                )
             }
             dialog.findViewById<ImageView>(R.id.qrCode_imageView).setImageBitmap(qrCode)
             dialog.show()
@@ -70,13 +74,16 @@ class BeerItemFragment : Fragment() {
     private fun bindObservers() {
         beerItemViewModel.isBeerLiked.observe(viewLifecycleOwner, Observer {
             isBeerLiked = it ?: false
-            Log.d(TAG, "isBeerLiked: $isBeerLiked isBeerLikedViewModel: ${beerItemViewModel.isBeerLiked.value}" )
+            Log.d(
+                TAG,
+                "isBeerLiked: $isBeerLiked isBeerLikedViewModel: ${beerItemViewModel.isBeerLiked.value}"
+            )
             setUpLikeBtn(isBeerLiked)
         })
     }
 
     private fun setUpLikeBtn(isBeerLiked: Boolean) {
-        if(isBeerLiked)
+        if (isBeerLiked)
             binding.likeImageView.setImageResource(R.drawable.ic_like_done)
         else
             binding.likeImageView.setImageResource(R.drawable.ic_like)
@@ -104,7 +111,7 @@ class BeerItemFragment : Fragment() {
 
     private fun setInitialData() {
         val jsonBeerItem = arguments?.getString("beerItem")
-        if(jsonBeerItem != null){
+        if (jsonBeerItem != null) {
             beerItem = Gson().fromJson(jsonBeerItem, BeersResponseItem::class.java)
             beerItem?.let {
                 binding.beerIdTextView.text = "# ${it.id}"
@@ -123,7 +130,7 @@ class BeerItemFragment : Fragment() {
                 binding.volValTV.text = volume
                 beerItemViewModel.checkIfBeerFavourite(it.id)
             }
-        } else{
+        } else {
             Toast.makeText(requireContext(), "Could not retrieve data", Toast.LENGTH_SHORT).show()
         }
     }

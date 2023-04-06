@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adiupd123.beerbuzz.databinding.FavBeerItemBinding
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
 
-class FavouritesAdapter() : androidx.recyclerview.widget.ListAdapter<FavouriteBeer, FavouritesAdapter.FavouriteBeerViewHolder>(ComparatorDiffUtil()) {
+class FavouritesAdapter() :
+    androidx.recyclerview.widget.ListAdapter<FavouriteBeer, FavouritesAdapter.FavouriteBeerViewHolder>(
+        ComparatorDiffUtil()
+    ) {
 
-    inner class FavouriteBeerViewHolder(private val binding: FavBeerItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(beerItem: FavouriteBeer){
+    inner class FavouriteBeerViewHolder(private val binding: FavBeerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(beerItem: FavouriteBeer) {
             // Change BeerItem used for rv item
             binding.beerIdTextView.text = "# ${beerItem.beerId}"
             binding.beerNameTextView.text = beerItem.beerName
@@ -30,7 +34,8 @@ class FavouritesAdapter() : androidx.recyclerview.widget.ListAdapter<FavouriteBe
         val item = getItem(position)
         holder.bind(item)
     }
-    class ComparatorDiffUtil: DiffUtil.ItemCallback<FavouriteBeer>() {
+
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<FavouriteBeer>() {
         override fun areItemsTheSame(oldItem: FavouriteBeer, newItem: FavouriteBeer): Boolean {
             return oldItem.beerId == newItem.beerId
         }

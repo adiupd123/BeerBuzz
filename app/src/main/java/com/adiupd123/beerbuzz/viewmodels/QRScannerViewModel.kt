@@ -8,11 +8,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class QRScannerViewModel @Inject constructor(private val beerRepository: BeerRepository): ViewModel() {
+class QRScannerViewModel @Inject constructor(private val beerRepository: BeerRepository) :
+    ViewModel() {
     val scannedBeerLiveData
-    get() = beerRepository.scannedBeerLiveData
+        get() = beerRepository.scannedBeerLiveData
 
-    fun getScannedBeer(id: Int){
+    fun getScannedBeer(id: Int) {
         viewModelScope.launch {
             beerRepository.getScannedBeer(id)
         }

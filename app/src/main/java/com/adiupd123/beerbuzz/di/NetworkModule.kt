@@ -41,6 +41,7 @@ class NetworkModule {
             .baseUrl(BASE_URL)
             .build()
     }
+
     @Provides
     @Singleton
     fun provideBeerApi(retrofit: Retrofit): BeerApi {

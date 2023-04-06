@@ -19,7 +19,7 @@ data class BeersResponseItem(
     val ph: Double,
     val srm: Double,
     val tagline: String,
-    val target_fg: Double       ,
+    val target_fg: Double,
     val target_og: Double,
     val volume: Volume
 )

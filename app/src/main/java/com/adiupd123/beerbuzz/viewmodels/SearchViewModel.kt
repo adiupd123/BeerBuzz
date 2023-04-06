@@ -9,13 +9,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val beerRepository: BeerRepository): ViewModel() {
+class SearchViewModel @Inject constructor(private val beerRepository: BeerRepository) :
+    ViewModel() {
     val allbeersLiveData
-    get() = beerRepository.allBeersLiveData
+        get() = beerRepository.allBeersLiveData
     var allCurrentPage = 1
 
     val searchedBeersLiveData
-    get() = beerRepository.searchedBeersLiveData
+        get() = beerRepository.searchedBeersLiveData
     var searchedCurrentPage = 1
 
     var searchQuery: String = ""
@@ -24,17 +25,17 @@ class SearchViewModel @Inject constructor(private val beerRepository: BeerReposi
         getAllBeers(++allCurrentPage)
     }
 
-    fun loadMoreSearchedData(searchQuery: String){
+    fun loadMoreSearchedData(searchQuery: String) {
         getSearchedBeers(searchQuery, ++searchedCurrentPage)
     }
 
-    fun getAllBeers(currentPage: Int){
+    fun getAllBeers(currentPage: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             beerRepository.getAllBeers(currentPage, 10)
         }
     }
 
-    fun getSearchedBeers(beerName: String, page: Int){
+    fun getSearchedBeers(beerName: String, page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             beerRepository.getSearchedBeers(beerName, page, 10)
         }

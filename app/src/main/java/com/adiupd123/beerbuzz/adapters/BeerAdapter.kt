@@ -8,15 +8,19 @@ import com.adiupd123.beerbuzz.databinding.BeerItemBinding
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.bumptech.glide.Glide
 
-class BeerAdapter(private val onBeerItemClicked: (BeersResponseItem) -> Unit) : androidx.recyclerview.widget.ListAdapter<BeersResponseItem, BeerAdapter.BeerViewHolder>(ComparatorDiffUtil()) {
+class BeerAdapter(private val onBeerItemClicked: (BeersResponseItem) -> Unit) :
+    androidx.recyclerview.widget.ListAdapter<BeersResponseItem, BeerAdapter.BeerViewHolder>(
+        ComparatorDiffUtil()
+    ) {
 
-    inner class BeerViewHolder(private val binding: BeerItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(beerItem: BeersResponseItem){
+    inner class BeerViewHolder(private val binding: BeerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(beerItem: BeersResponseItem) {
             binding.beerIdTextView.text = "#${beerItem.id}"
             Glide.with(binding.beerItemImageView)
                 .load(beerItem.image_url)
                 .into(binding.beerItemImageView)
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onBeerItemClicked(beerItem)
             }
         }
@@ -32,12 +36,19 @@ class BeerAdapter(private val onBeerItemClicked: (BeersResponseItem) -> Unit) : 
         val item = getItem(position)
         holder.bind(item)
     }
-    class ComparatorDiffUtil: DiffUtil.ItemCallback<BeersResponseItem>() {
-        override fun areItemsTheSame(oldItem: BeersResponseItem, newItem: BeersResponseItem): Boolean {
+
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<BeersResponseItem>() {
+        override fun areItemsTheSame(
+            oldItem: BeersResponseItem,
+            newItem: BeersResponseItem
+        ): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: BeersResponseItem, newItem: BeersResponseItem): Boolean {
+        override fun areContentsTheSame(
+            oldItem: BeersResponseItem,
+            newItem: BeersResponseItem
+        ): Boolean {
             return oldItem == newItem
         }
 

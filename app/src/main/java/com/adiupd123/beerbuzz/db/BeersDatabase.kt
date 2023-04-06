@@ -5,6 +5,6 @@ import androidx.room.RoomDatabase
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
 
 @Database(entities = [FavouriteBeer::class], version = 2, exportSchema = false)
-abstract class BeersDatabase: RoomDatabase() {
+abstract class BeersDatabase : RoomDatabase() {
     abstract fun favouriteDao(): FavouriteDao
 }

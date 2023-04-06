@@ -19,24 +19,27 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class BeerItemViewModel @Inject constructor(private val beerRepository: BeerRepository): ViewModel() {
+class BeerItemViewModel @Inject constructor(private val beerRepository: BeerRepository) :
+    ViewModel() {
 
     private var _isBeerLiked = MutableLiveData<Boolean>()
     val isBeerLiked: LiveData<Boolean> get() = _isBeerLiked
 
-    fun checkIfBeerFavourite(id: Int){
+    fun checkIfBeerFavourite(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             Log.d(TAG, "checkIfBeerFavourite: ${beerRepository.isBeerFavourite(id)}")
             _isBeerLiked.postValue(beerRepository.isBeerFavourite(id))
         }
     }
-    fun removeFavouriteBeer(id: Int, name: String){
+
+    fun removeFavouriteBeer(id: Int, name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             beerRepository.removeFavouriteBeer(id, name)
         }
         _isBeerLiked.postValue(false)
     }
-    fun addFavouriteBeer(id: Int, name: String){
+
+    fun addFavouriteBeer(id: Int, name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             beerRepository.addFavouriteBeer(id, name)
         }

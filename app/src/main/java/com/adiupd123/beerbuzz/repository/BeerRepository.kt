@@ -14,38 +14,39 @@ import com.google.gson.Gson
 import org.json.JSONObject
 import javax.inject.Inject
 
-class BeerRepository @Inject constructor(private val beerApi: BeerApi,
-                                         private val favouriteDao: FavouriteDao,
-                                         private val sharedPref: SharedPreferences
-                                               ) {
+class BeerRepository @Inject constructor(
+    private val beerApi: BeerApi,
+    private val favouriteDao: FavouriteDao,
+    private val sharedPref: SharedPreferences
+) {
 
     private val _allBeersLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
     val allBeersLiveData: LiveData<NetworkResult<BeersResponse>>
-    get() = _allBeersLiveData
+        get() = _allBeersLiveData
 
     private val _searchedBeersLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
     val searchedBeersLiveData: LiveData<NetworkResult<BeersResponse>>
-    get() = _searchedBeersLiveData
+        get() = _searchedBeersLiveData
 
     private val _allFavouriteBeersLiveData = MutableLiveData<List<FavouriteBeer>>()
     val allFavouriteBeersLiveData: LiveData<List<FavouriteBeer>>
-    get() = _allFavouriteBeersLiveData
+        get() = _allFavouriteBeersLiveData
 
     private val _botdLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
     val botdLiveData: LiveData<NetworkResult<BeersResponse>>
-    get() = _botdLiveData
+        get() = _botdLiveData
 
     private val _scannedBeerLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
     val scannedBeerLiveData: LiveData<NetworkResult<BeersResponse>>
-    get() = _scannedBeerLiveData
+        get() = _scannedBeerLiveData
 
-    suspend fun getAllBeers(page: Int, per_page: Int){
+    suspend fun getAllBeers(page: Int, per_page: Int) {
         _allBeersLiveData.postValue(NetworkResult.Loading())
         val response = beerApi.getAllBeers(page, per_page)
-        if(response.isSuccessful && response.body() != null){
+        if (response.isSuccessful && response.body() != null) {
             Log.d(TAG, response.body().toString())
             _allBeersLiveData.postValue(NetworkResult.Success(response.body()!!))
-        } else if(response.errorBody() != null){
+        } else if (response.errorBody() != null) {
             Log.d(TAG, response.errorBody().toString())
             val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
             _allBeersLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
@@ -54,12 +55,12 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
         }
     }
 
-    suspend fun getSearchedBeers(beerName: String, page: Int, per_page: Int){
+    suspend fun getSearchedBeers(beerName: String, page: Int, per_page: Int) {
         val response = beerApi.getSearchedBeers(beerName, page, per_page)
-        if(response.isSuccessful && response.body() != null){
+        if (response.isSuccessful && response.body() != null) {
             Log.d(TAG, response.body().toString())
             _searchedBeersLiveData.postValue(NetworkResult.Success(response.body()!!))
-        } else if(response.errorBody() != null){
+        } else if (response.errorBody() != null) {
             Log.d(TAG, response.errorBody().toString())
             val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
             _searchedBeersLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
@@ -68,12 +69,12 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
         }
     }
 
-    suspend fun getScannedBeer(id: Int){
+    suspend fun getScannedBeer(id: Int) {
         val response = beerApi.getScannedBeer(id)
-        if(response.isSuccessful && response.body() != null){
+        if (response.isSuccessful && response.body() != null) {
             Log.d(TAG, response.body().toString())
             _scannedBeerLiveData.postValue(NetworkResult.Success(response.body()!!))
-        } else if(response.errorBody() != null){
+        } else if (response.errorBody() != null) {
             Log.d(TAG, response.errorBody().toString())
             val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
             _scannedBeerLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
@@ -81,8 +82,8 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
             _scannedBeerLiveData.postValue(NetworkResult.Error("Something went wrong!"))
         }
     }
-    
-    suspend fun getBeerOfTheDay(){
+
+    suspend fun getBeerOfTheDay() {
         val lastExecutionTime = sharedPref.getLong("lastExecutionTime", 0)
         val currentTime = System.currentTimeMillis()
 
@@ -97,16 +98,16 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
         }
         // 24 hours have elapsed, execute the function and save the beer details
         val beerResponse = beerApi.getRandomBeer()
-        if(beerResponse.isSuccessful && beerResponse.body() != null){
+        if (beerResponse.isSuccessful && beerResponse.body() != null) {
             Log.d(TAG, beerResponse.body().toString())
             val beerResponseJson = Gson().toJson(beerResponse.body()!!)
-            with (sharedPref.edit()) {
+            with(sharedPref.edit()) {
                 putString("beerOfTheDay", beerResponseJson)
                 putLong("lastExecutionTime", currentTime)
                 apply()
             }
             _botdLiveData.postValue(NetworkResult.Success(beerResponse.body()!!))
-        } else if(beerResponse.errorBody() != null){
+        } else if (beerResponse.errorBody() != null) {
             Log.d(TAG, beerResponse.errorBody().toString())
             val errorObj = JSONObject(beerResponse.errorBody()!!.charStream().readText())
             _botdLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
@@ -115,7 +116,7 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
         }
     }
 
-    suspend fun showAllFavouriteBeers(){
+    suspend fun showAllFavouriteBeers() {
         _allFavouriteBeersLiveData.postValue(favouriteDao.getAllFavouriteBeers())
     }
 
@@ -124,11 +125,12 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
     suspend fun isBeerFavourite(id: Int): Boolean {
         return favouriteDao.getSelectedFavBeer(id) != null
     }
-    suspend fun addFavouriteBeer(id: Int, name: String){
+
+    suspend fun addFavouriteBeer(id: Int, name: String) {
         favouriteDao.addFavouriteBeer(FavouriteBeer(id, name))
     }
 
-    suspend fun removeFavouriteBeer(id: Int, name: String){
+    suspend fun removeFavouriteBeer(id: Int, name: String) {
         favouriteDao.removeFavouriteBeer(FavouriteBeer(id, name))
     }
 }

@@ -9,12 +9,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val beerRepository: BeerRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val beerRepository: BeerRepository) : ViewModel() {
 
     val bOTDLiveData
-    get() = beerRepository.botdLiveData
+        get() = beerRepository.botdLiveData
 
-    fun getBeerOfTheDay(){
+    fun getBeerOfTheDay() {
         viewModelScope.launch(Dispatchers.IO) {
             beerRepository.getBeerOfTheDay()
         }

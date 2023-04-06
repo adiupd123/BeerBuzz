@@ -1,7 +1,9 @@
 package com.adiupd123.beerbuzz.ui.fragments
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,10 +22,10 @@ import com.google.zxing.BarcodeFormat
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class QRScannerFragment : Fragment(){
+class QRScannerFragment : Fragment() {
     private var _binding: FragmentQRScannerBinding? = null
     private val binding
-    get() = _binding!!
+        get() = _binding!!
     private val qrScannerViewModel by viewModels<QRScannerViewModel>()
 
     private lateinit var codeScanner: CodeScanner
@@ -63,15 +65,19 @@ class QRScannerFragment : Fragment(){
 
     private fun bindObservers() {
         qrScannerViewModel.scannedBeerLiveData.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 is NetworkResult.Success -> {
                     val bundle = Bundle()
                     val jsonBeerItem = Gson().toJson(it.data?.get(0))
                     bundle.putString("beerItem", jsonBeerItem)
-                    findNavController().navigate(R.id.action_QRScannerFragment_to_beerItemFragment, bundle)
+                    findNavController().navigate(
+                        R.id.action_QRScannerFragment_to_beerItemFragment,
+                        bundle
+                    )
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is NetworkResult.Loading -> {}
             }
