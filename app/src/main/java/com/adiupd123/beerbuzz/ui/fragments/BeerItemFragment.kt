@@ -46,7 +46,7 @@ class BeerItemFragment : Fragment() {
             onLikeButtonClicked()
         }
         binding.qrGenImageView.setOnClickListener{
-            val qrCode = beerItemViewModel.generateQRCode(beerItem.toString(), 200, 200)
+            val qrCode = beerItemViewModel.generateQRCode(beerItem?.id.toString(), 1024, 1024)
             val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.qrcode_dialog_overlay)

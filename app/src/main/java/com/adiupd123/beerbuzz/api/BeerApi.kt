@@ -23,4 +23,6 @@ interface BeerApi {
     @GET("/v2/beers/random")
     suspend fun getRandomBeer(): Response<BeersResponse>
 
+    @GET("/v2/beers")
+    suspend fun getScannedBeer(@Query("ids") id: Int): Response<BeersResponse>
 }

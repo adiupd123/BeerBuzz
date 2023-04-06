@@ -35,6 +35,10 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
     val botdLiveData: LiveData<NetworkResult<BeersResponse>>
     get() = _botdLiveData
 
+    private val _scannedBeerLiveData = MutableLiveData<NetworkResult<BeersResponse>>()
+    val scannedBeerLiveData: LiveData<NetworkResult<BeersResponse>>
+    get() = _scannedBeerLiveData
+
     suspend fun getAllBeers(page: Int, per_page: Int){
         _allBeersLiveData.postValue(NetworkResult.Loading())
         val response = beerApi.getAllBeers(page, per_page)
@@ -61,6 +65,20 @@ class BeerRepository @Inject constructor(private val beerApi: BeerApi,
             _searchedBeersLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
         } else {
             _searchedBeersLiveData.postValue(NetworkResult.Error("Something went wrong!"))
+        }
+    }
+
+    suspend fun getScannedBeer(id: Int){
+        val response = beerApi.getScannedBeer(id)
+        if(response.isSuccessful && response.body() != null){
+            Log.d(TAG, response.body().toString())
+            _scannedBeerLiveData.postValue(NetworkResult.Success(response.body()!!))
+        } else if(response.errorBody() != null){
+            Log.d(TAG, response.errorBody().toString())
+            val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
+            _scannedBeerLiveData.postValue(NetworkResult.Error(errorObj.getString("message")))
+        } else {
+            _scannedBeerLiveData.postValue(NetworkResult.Error("Something went wrong!"))
         }
     }
     
