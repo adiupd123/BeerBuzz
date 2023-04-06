@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.adiupd123.beerbuzz.db.BeersDatabase
 import com.adiupd123.beerbuzz.db.FavouriteDao
-import com.adiupd123.beerbuzz.models.local.FavouriteBeer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

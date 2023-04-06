@@ -4,11 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.adiupd123.beerbuzz.databinding.BeerItemBinding
 import com.adiupd123.beerbuzz.databinding.FavBeerItemBinding
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
-import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
-import com.bumptech.glide.Glide
 
 class FavouritesAdapter() : androidx.recyclerview.widget.ListAdapter<FavouriteBeer, FavouritesAdapter.FavouriteBeerViewHolder>(ComparatorDiffUtil()) {
 

@@ -40,7 +40,7 @@
         <action
             android:id="@+id/action_QRScannerFragment_to_beerItemFragment"
             app:destination="@id/beerItemFragment"
-            app:popUpTo="@id/QRScannerFragment" />
+            app:popUpTo="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"

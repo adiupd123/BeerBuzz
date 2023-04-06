@@ -2,7 +2,6 @@ package com.adiupd123.beerbuzz.db
 
 import androidx.room.*
 import com.adiupd123.beerbuzz.models.local.FavouriteBeer
-import com.adiupd123.beerbuzz.models.local.FavouriteBeersList
 
 @Dao
 interface FavouriteDao {

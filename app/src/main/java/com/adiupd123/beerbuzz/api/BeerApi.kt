@@ -1,7 +1,6 @@
 package com.adiupd123.beerbuzz.api
 
 import com.adiupd123.beerbuzz.models.remote.BeersResponse
-import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

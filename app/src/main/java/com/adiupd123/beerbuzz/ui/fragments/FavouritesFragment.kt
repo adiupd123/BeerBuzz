@@ -40,7 +40,7 @@ class FavouritesFragment : Fragment() {
         }
     }
 
-    fun bindObservers(){
+    private fun bindObservers(){
         favViewModel.allFavouriteBeersLiveData.observe(viewLifecycleOwner, Observer {
             allFavBeersList = it
             favBeersAdapter.submitList(allFavBeersList)

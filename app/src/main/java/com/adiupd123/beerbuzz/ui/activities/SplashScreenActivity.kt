@@ -3,7 +3,6 @@ package com.adiupd123.beerbuzz.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.adiupd123.beerbuzz.R
 import com.adiupd123.beerbuzz.databinding.ActivitySplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 

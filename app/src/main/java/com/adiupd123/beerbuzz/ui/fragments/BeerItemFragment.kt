@@ -1,6 +1,5 @@
 package com.adiupd123.beerbuzz.ui.fragments
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -19,7 +18,6 @@ import com.adiupd123.beerbuzz.utils.Constants.TAG
 import com.adiupd123.beerbuzz.viewmodels.BeerItemViewModel
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.google.zxing.qrcode.encoder.QRCode
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +44,7 @@ class BeerItemFragment : Fragment() {
             onLikeButtonClicked()
         }
         binding.qrGenImageView.setOnClickListener{
-            val qrCode = beerItemViewModel.generateQRCode(beerItem?.id.toString(), 1024, 1024)
+            val qrCode = beerItemViewModel.generateQRCode(beerItem?.id.toString(), 1024)
             val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.qrcode_dialog_overlay)
@@ -119,7 +117,7 @@ class BeerItemFragment : Fragment() {
                 binding.fbValTV.text = it.first_brewed
                 val ingredients = "Hops: " + it.ingredients.hops.toString() + "\n" +
                         "Malts: " + it.ingredients.malt.toString() + "\n" +
-                        "Yeast: " + it.ingredients.yeast.toString()
+                        "Yeast: " + it.ingredients.yeast
                 binding.ingredientsValTV.text = ingredients
                 val volume = it.volume.value.toString() + " " + it.volume.unit
                 binding.volValTV.text = volume

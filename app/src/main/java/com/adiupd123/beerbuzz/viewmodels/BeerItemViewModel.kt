@@ -1,8 +1,6 @@
 package com.adiupd123.beerbuzz.viewmodels
 
-import android.R.attr.bitmap
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidmads.library.qrgenearator.QRGContents
@@ -45,10 +43,10 @@ class BeerItemViewModel @Inject constructor(private val beerRepository: BeerRepo
         _isBeerLiked.postValue(true)
     }
 
-    fun generateQRCode(id: String, width: Int, height: Int): Bitmap? {
+    fun generateQRCode(id: String, size: Int): Bitmap? {
         val b = Bundle()
         b.putString("beerItem", id)
-        val qrgEncoder = QRGEncoder(id, b, QRGContents.Type.TEXT, width)
+        val qrgEncoder = QRGEncoder(id, b, QRGContents.Type.TEXT, size)
         return try {
             // Getting QR-Code as Bitmap
             qrgEncoder.bitmap

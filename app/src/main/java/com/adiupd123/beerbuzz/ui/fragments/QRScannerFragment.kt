@@ -1,34 +1,24 @@
 package com.adiupd123.beerbuzz.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.adiupd123.beerbuzz.R
 import com.adiupd123.beerbuzz.databinding.FragmentQRScannerBinding
-import com.adiupd123.beerbuzz.utils.Constants.TAG2
 import com.adiupd123.beerbuzz.utils.NetworkResult
 import com.adiupd123.beerbuzz.viewmodels.QRScannerViewModel
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ScanMode
-import com.google.android.gms.vision.CameraSource
-import com.google.android.gms.vision.Detector
-import com.google.android.gms.vision.barcode.Barcode
-import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
 class QRScannerFragment : Fragment(){
     private var _binding: FragmentQRScannerBinding? = null
@@ -41,10 +31,8 @@ class QRScannerFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentQRScannerBinding.inflate(inflater, container, false)
-
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -83,7 +71,7 @@ class QRScannerFragment : Fragment(){
                     findNavController().navigate(R.id.action_QRScannerFragment_to_beerItemFragment, bundle)
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {}
             }

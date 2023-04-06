@@ -61,12 +61,13 @@
                 android:id="@+id/qrGen_imageView"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/qr_scan"
+                android:src="@drawable/qr_code"
                 android:clickable="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/beer_imageView"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/qr_generator"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

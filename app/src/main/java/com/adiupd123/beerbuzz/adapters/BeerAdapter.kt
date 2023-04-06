@@ -2,13 +2,9 @@ package com.adiupd123.beerbuzz.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.adiupd123.beerbuzz.R
 import com.adiupd123.beerbuzz.databinding.BeerItemBinding
-import com.adiupd123.beerbuzz.databinding.FragmentBeerItemBinding
 import com.adiupd123.beerbuzz.models.remote.BeersResponseItem
 import com.bumptech.glide.Glide
 
@@ -16,7 +12,7 @@ class BeerAdapter(private val onBeerItemClicked: (BeersResponseItem) -> Unit) : 
 
     inner class BeerViewHolder(private val binding: BeerItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(beerItem: BeersResponseItem){
-            binding.beerIdTextView.text = "#" + beerItem.id.toString()
+            binding.beerIdTextView.text = "#${beerItem.id}"
             Glide.with(binding.beerItemImageView)
                 .load(beerItem.image_url)
                 .into(binding.beerItemImageView)
@@ -28,7 +24,7 @@ class BeerAdapter(private val onBeerItemClicked: (BeersResponseItem) -> Unit) : 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = BeerItemBinding.inflate(inflater, parent, false);
+        val binding = BeerItemBinding.inflate(inflater, parent, false)
         return BeerViewHolder(binding)
     }
 

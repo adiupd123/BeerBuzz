@@ -53,7 +53,7 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_QRScannerFragment)
         }
     }
-    fun bindObservers() {
+    private fun bindObservers() {
         mainViewModel.bOTDLiveData.observe(viewLifecycleOwner, Observer {
             when(it){
                 is NetworkResult.Success -> {
@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
                         .into(binding.bOTDImageView)
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {}
             }

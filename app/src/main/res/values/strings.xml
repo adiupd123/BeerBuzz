@@ -21,4 +21,5 @@
     <string name="find_drinks_and_that">Find drinks and that...</string>
     <string name="search_beer_name">Search Beer Name</string>
     <string name="scan">Scan</string>
+    <string name="qr_generator">qr_generator</string>
 </resources>

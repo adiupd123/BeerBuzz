@@ -1,6 +1,5 @@
 package com.adiupd123.beerbuzz.ui.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -87,7 +86,6 @@ class SearchFragment : Fragment() {
         })
     }
 
-    @SuppressLint("ShowToast")
     private fun bindObservers() {
         // We bind observer to the livedata and call the observer when any change to livedata happens
         searchViewModel.allbeersLiveData.observe(viewLifecycleOwner, Observer {
@@ -104,7 +102,7 @@ class SearchFragment : Fragment() {
                     isLoading = false
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
                     isLoading = false
                 }
                 is NetworkResult.Loading -> {
@@ -128,7 +126,7 @@ class SearchFragment : Fragment() {
                     isLoading = false
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
                     isLoading = false
                 }
                 is NetworkResult.Loading -> {
