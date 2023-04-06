@@ -7,9 +7,6 @@ import retrofit2.http.Query
 
 interface BeerApi {
 
-    // https://api.punkapi.com/v2/beers and
-    // then add ?brewed_before=11-2012&abv_gt=6 - we'll implement additional params when basic features are implemented
-    // OR ?page=2&per_page=80 for pagination
     //Get All beers paginated manner
     @GET("/v2/beers")
     suspend fun getAllBeers(
@@ -25,10 +22,11 @@ interface BeerApi {
         @Query("per_page") per_page: Int
     ): Response<BeersResponse>
 
-    // Get Random Beer using Random beer button
+    // Get a Random Beer
     @GET("/v2/beers/random")
     suspend fun getRandomBeer(): Response<BeersResponse>
 
+    // Get a beer obtained from id generated from scanned qr code
     @GET("/v2/beers")
     suspend fun getScannedBeer(@Query("ids") id: Int): Response<BeersResponse>
 }
