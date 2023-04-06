@@ -56,6 +56,18 @@
                 android:src="@drawable/ic_like"
                 app:layout_constraintBottom_toBottomOf="@+id/beer_imageView"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/qrGen_imageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/qr_scan"
+                android:clickable="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/beer_imageView"
+                app:layout_constraintStart_toStartOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout

@@ -36,7 +36,12 @@
         android:id="@+id/QRScannerFragment"
         android:name="com.adiupd123.beerbuzz.ui.fragments.QRScannerFragment"
         android:label="fragment_q_r_scanner"
-        tools:layout="@layout/fragment_q_r_scanner" />
+        tools:layout="@layout/fragment_q_r_scanner" >
+        <action
+            android:id="@+id/action_QRScannerFragment_to_beerItemFragment"
+            app:destination="@id/beerItemFragment"
+            app:popUpTo="@id/QRScannerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.adiupd123.beerbuzz.ui.fragments.SearchFragment"

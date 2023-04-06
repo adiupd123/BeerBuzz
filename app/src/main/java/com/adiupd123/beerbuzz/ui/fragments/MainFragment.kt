@@ -49,6 +49,9 @@ class MainFragment : Fragment() {
         binding.favouritesTextView.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_favouritesFragment)
         }
+        binding.qrImageView.setOnClickListener{
+            findNavController().navigate(R.id.action_mainFragment_to_QRScannerFragment)
+        }
     }
     fun bindObservers() {
         mainViewModel.bOTDLiveData.observe(viewLifecycleOwner, Observer {

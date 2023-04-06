@@ -29,7 +29,7 @@
         android:background="@color/dark_green"
         android:text="@string/_1"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/beerItem_imageView"
         app:layout_constraintTop_toTopOf="@+id/beerItem_imageView"
         app:shapeAppearanceOverlay="@style/roundedCorners"/>
