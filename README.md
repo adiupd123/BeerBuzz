@@ -9,7 +9,7 @@ BeerBuzz is an Android App for beverage enthusiasts that allows them to explore 
 - Beer Of The Day feature that shows a new beer for each day
 - Scrollable List of Beer Items
 - Search Functionality
-- Favourite your like beer
+- Favourite your liked beer
 - Generates QR Code for each beer item
 - QR Scanning functionality that allows users to share each others' favourites
 - List of Favourite Beers: To view your personal list of favourited beers
@@ -47,12 +47,12 @@ BeerBuzz is an Android App for beverage enthusiasts that allows them to explore 
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 - [yuriy-budiyev/code-scanner](https://github.com/yuriy-budiyev/code-scanner) - Code scanner library for Android, based on ZXing
 - [androidmads/QRGenerator](https://github.com/androidmads/QRGenerator) - QR Generator Library and Saves the QR Code as Image
-
+- [PUNK API](https://punkapi.com/documentation/v2) - The Punk API takes Brewdog's DIY Dog and turns it into a searchable, filterable API that's completely free and open source.
+ 
 ## Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
 
 ![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
-
 ---
 ## APK
 
