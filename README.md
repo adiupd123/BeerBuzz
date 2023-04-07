@@ -1,8 +1,8 @@
-# BeerBuzz
+# 🍺BeerBuzz
 
 BeerBuzz is an Android App for beverage enthusiasts that allows them to explore a wide range of beers, whiskeys, etc. and enhance their knowledge regarding smallest details of the best of drinks that this app offers.
 
-## Features
+## 🖥 Features
 
 - Supports both Light and Dark Mode
 - Splash Screen with App's Logo and Name
@@ -28,7 +28,7 @@ BeerBuzz is an Android App for beverage enthusiasts that allows them to explore 
 <img src="https://user-images.githubusercontent.com/78906777/230481104-dfe0c4fe-43e5-43f0-976e-590b48d7c9df.png" alt="FavouriteFragment" height="400" />
 </p>
 
-## Built With
+## 🛠️Built With
   
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous and more..
@@ -49,15 +49,15 @@ BeerBuzz is an Android App for beverage enthusiasts that allows them to explore 
 - [androidmads/QRGenerator](https://github.com/androidmads/QRGenerator) - QR Generator Library and Saves the QR Code as Image
 - [PUNK API](https://punkapi.com/documentation/v2) - The Punk API takes Brewdog's DIY Dog and turns it into a searchable, filterable API that's completely free and open source.
  
-## Architecture
+## 📐Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
 
 ![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 ---
-## APK
+## 📱APK
 
 [APK Link](https://drive.google.com/file/d/1IYO7eP3XnV0Guf7KteA_lDRzycLljmrv/view?usp=sharing)
 
-## App Video
+## 🎥App Video
 
 [App Working Video Link](https://drive.google.com/file/d/1rUNZLclxXNzK3AEZ3Vz-NmSBCBucFkxr/view?usp=sharing)
